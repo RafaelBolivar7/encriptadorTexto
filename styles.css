@@ -4,6 +4,15 @@
     font-size: 32px;
     font-weight: 400;
     line-height: 150%;
+    justify-content: space-between;
+ }
+
+ body{
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Asegura que el body ocupe toda la altura de la ventana */
+    display: flex;
+    flex-direction: column;
  }
 
 .logo{
@@ -16,6 +25,8 @@ main{
     display: flex;
     margin-bottom: 50px;
     margin-left: 80px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .text-area{
@@ -74,7 +85,6 @@ main{
     height: 67px;
     margin-left: 30px;
     width: 328px;
-
 } 
 
 .btn-copiar{
@@ -98,10 +108,11 @@ main{
 
 .contenedor-lateral{
     background-color: white;
-    margin-left: 100px;
+    margin-left: 30px;
     height: 900px;
     width: 496px;
     border-radius: 24px;
+    margin-right: 20px;
 }
 
 .parrafo-mensaje{
@@ -121,3 +132,37 @@ main{
     color: #0A3871;
     font-size: 24px;
 }
+
+.footer{
+    background-color: #0A3871;
+    padding: 0;
+    color: white;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 1 rem;
+    font-weight: 400;
+    margin-top: 100px;
+    flex-grow: 1;
+    }
+
+.footer p{
+    background-color: #0A3871;
+}
+
+@media (max-width: 768px) {
+    body{
+        flex-direction: column-reverse;
+        padding: 5%;
+    }
+    .text-area, .mensaje {
+        height: auto; /* Ajustar altura automáticamente para móviles */
+    }
+    .btn-encriptar, .btn-desencriptar, .btn-copiar {
+        width: 100%; /* Botones de ancho completo en pantallas pequeñas */
+        margin-top: 10px;
+    }
+    .informacion {
+        font-size: 12px; /* Reducir tamaño de fuente en pantallas pequeñas */
+    }
+}
+
