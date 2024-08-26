@@ -21,31 +21,44 @@ function btnEncriptar(){
 function encriptar(stringEncriptado){
     let matrizCodigo = [["e", "enter"], ["i", "imes"],["a","ai"], ["o", "ober"], ["u", "ufat"] ];
     stringEncriptado=stringEncriptado.toLowerCase();
+    if(evaluarCaracteresEspeciales(stringEncriptado)){
+        stringEncriptado= "El texto contiene caracteres especiales. Para encriptar intente nuevamente sin caracteres especiales";
+        return stringEncriptado
+    }else{
 
-    for (let i = 0; i<matrizCodigo.length; i++){
-        if(stringEncriptado.includes(matrizCodigo[i][0])){
-            stringEncriptado = stringEncriptado.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1]);
+        for (let i = 0; i<matrizCodigo.length; i++){
+            if(stringEncriptado.includes(matrizCodigo[i][0])){
+                stringEncriptado = stringEncriptado.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1]);
+            }
         }
+        return stringEncriptado;
     }
-    return stringEncriptado;
 }
 
 function btnDesencriptar(){
     const textoEncriptado = desencriptar(textArea.value);
     mensaje.value = textoEncriptado;
     textArea.value="";
+    mensaje.style.backgroundImage = "none";
+    parrafoMensaje.style.visibility="hidden";
+    botonCopiar.style.visibility="visible";
     
 }
 function desencriptar(stringDesencriptado){
     let matrizCodigo = [["enter", "e"], ["imes", "i"],["ai","a"], ["ober", "o"], ["ufat", "u"] ];
     stringDesencriptado=stringDesencriptado.toLowerCase();
-
-    for (let i = 0; i<matrizCodigo.length; i++){
-        if(stringDesencriptado.includes(matrizCodigo[i][0])){
-            stringDesencriptado = stringDesencriptado.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1]);
+    if(evaluarCaracteresEspeciales(stringDesencriptado)){
+            // alert("El texto contiene caracteres especiales");
+            stringDesencriptado= "El texto contiene caracteres especiales. Para desencriptar intente nuevamente sin caracteres especiales";
+            return stringDesencriptado
+    }else{
+        for (let i = 0; i<matrizCodigo.length; i++){
+            if(stringDesencriptado.includes(matrizCodigo[i][0])){
+                stringDesencriptado = stringDesencriptado.replaceAll(matrizCodigo[i][0], matrizCodigo[i][1]);
+            }
         }
+        return stringDesencriptado;
     }
-    return stringDesencriptado;
 }
 
 function btnCopiar(){
@@ -61,3 +74,9 @@ function btnCopiar(){
     // Opcional: mensaje de confirmación
     //alert("Texto copiado: " + mensajeCopiado.value);
 }
+
+function evaluarCaracteresEspeciales(str) {
+    const regex = /[´áéíóúü@#$%^&*()_+\-=\[\]{};':"\\|<>\/?]/;
+    console.log(regex.test(str));
+    return regex.test(str);   
+  }
